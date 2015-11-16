@@ -3,6 +3,7 @@ class FuncionarioModel {
 	private $id;
 	private $nome;
 	private $salario;
+	private $necessidadesEspeciais = array();
 	
 	public function setId($id) {
 		if ($id > 0) {
@@ -49,5 +50,27 @@ class FuncionarioModel {
 	
 	public function getSalarioSimbolo() {
 		return 'R$ ' . number_format($this->salario, 2, ',', '.');
+	}
+	
+	public function addNecessidadeEspecial(NecessidadeEspecialModel $necessidadeEspecial) {
+		$id = $necessidadeEspecial->getId();
+		$this->necessidadesEspeciais[$id] = $necessidadeEspecial;
+	}
+	
+	public function removeNecessidadeEspecial(NecessidadeEspecialModel $necessidadeEspecial) {
+		$id = $necessidadeEspecial->getId();
+		unset($this->necessidadesEspeciais[$id]);
+	}
+	
+	public function getNecessidadesEspeciais() {
+		return $this->necessidadesEspeciais;
+	}
+	
+	public function getNecessidadeEspecial($id) {
+		if (isset($this->necessidadesEspeciais[$id])) {
+			return $this->necessidadesEspeciais[$id];
+		} else {
+			return null;
+		}
 	}
 }
