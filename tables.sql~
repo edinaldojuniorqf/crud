@@ -1,0 +1,9 @@
+CREATE TABLE funcionario
+(
+  id bigserial NOT NULL,
+  nome character varying(255) NOT NULL,
+  salario real DEFAULT 0,
+  CONSTRAINT funcionario_pkey PRIMARY KEY (id)
+);
+
+
